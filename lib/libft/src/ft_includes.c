@@ -13,13 +13,16 @@
 #include "libft.h"
 #include <stdbool.h>
 
-bool	ft_includes(char *str, char c)
+bool	ft_includes(const char *str, char c)
 {
-	while (*str != '\0')
+	char	*s;
+
+	s = (char *)str;
+	while (*s != '\0')
 	{
-		if (*str == c)
+		if (*s == c)
 			return (true);
-		str++;
+		s++;
 	}
 	return (false);
 }

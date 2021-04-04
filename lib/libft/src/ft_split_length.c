@@ -61,7 +61,7 @@ static void	cpy_words(char *s, char c, char **split, size_t num_words)
 	split[num_words] = NULL;
 }
 
-char	**ft_split_length(char const *s, char c, size_t *length)
+char	**ft_split_length(const char *s, char c, size_t *length)
 {
 	char	**split;
 	size_t	num_words;

@@ -72,7 +72,7 @@ void	**ft_arr_concat(t_arr *arr, size_t *length)
 		free(arr);
 		return (res);
 	}
-	res = malloc((arr->length + 1) * sizeof(void *));
+	res = ft_malloc((arr->length + 1) * sizeof(void *));
 	ft_memcpy(res, arr->table + arr->start_i, arr->length * sizeof(void *));
 	res[arr->length] = NULL;
 	ft_arr_free(arr, NULL);

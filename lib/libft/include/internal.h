@@ -30,15 +30,8 @@ typedef struct s_buf
 	ssize_t			start;
 	struct s_buf	*next;
 }					t_buf;
-void				*ft_memcpy(void *dest, void *src, size_t n);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				shift(t_buf **fd);
 t_buf				*new_buf(size_t size);
-
-/*
-** ft_arr_ family
-*/
-# ifndef ARR_DEFAULT_SIZE
-#  define ARR_DEFAULT_SIZE 10
-# endif
 
 #endif

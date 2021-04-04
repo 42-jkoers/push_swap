@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stddef.h>
 
-size_t	ft_strcount(char *str, char search)
+size_t	ft_strcount(const char *str, char search)
 {
 	size_t	n;
 

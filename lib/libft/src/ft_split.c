@@ -74,7 +74,7 @@ static void	cpy_words(char *s, char c, char **split, size_t num_words)
 	split[num_words] = NULL;
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**split;
 	size_t	num_words;

@@ -32,11 +32,11 @@
 // 		}
 // 		if (msg == 0)
 // 		{
-// 			ft_arr_push(arr, read);
+// 			ft_arr_pushend(arr, read);
 // 			break ;
 // 		}
 // 		if (msg == 1)
-// 			ft_arr_push(arr, read);
+// 			ft_arr_pushend(arr, read);
 // 	}
 // }
 

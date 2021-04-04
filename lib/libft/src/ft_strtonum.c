@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-long	ft_strtonum(char *str)
+long	ft_strtonum(const char *str)
 {
 	long	result;
 	bool	is_negative;

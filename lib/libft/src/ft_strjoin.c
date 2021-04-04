@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*joined;
 	size_t	s1_len;

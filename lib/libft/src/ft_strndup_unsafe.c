@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-char	*ft_strndup_unsafe(char *str, size_t len)
+char	*ft_strndup_unsafe(const char *str, size_t len)
 {
 	char	*dup;
 

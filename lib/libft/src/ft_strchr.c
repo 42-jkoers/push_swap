@@ -14,14 +14,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-char	*ft_strchr(char *str, char c)
+char	*ft_strchr(const char *str, char c)
 {
+	char	*s;
+
+	s = (char *)str;
 	while (true)
 	{
-		if (*str == c)
-			return (str);
-		if (*str == '\0')
+		if (*s == c)
+			return (s);
+		if (*s == '\0')
 			return (NULL);
-		str++;
+		s++;
 	}
 }

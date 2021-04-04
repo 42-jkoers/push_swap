@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-char	*ft_strdup(char *str)
+char	*ft_strdup(const char *str)
 {
 	char	*dup;
 	size_t	size;

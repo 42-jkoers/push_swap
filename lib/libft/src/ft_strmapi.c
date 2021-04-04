@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
 	char			*new_s;
 	size_t			s_len;

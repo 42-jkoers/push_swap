@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int		result;
 	bool	is_negative;

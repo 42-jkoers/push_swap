@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-unsigned long	ft_strtonum_u(char *str)
+unsigned long	ft_strtonum_u(const char *str)
 {
 	unsigned long	result;
 

@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stddef.h>
 
-char	*ft_strncat(char *dest, char *src, size_t nb)
+char	*ft_strncat(char *dest, const char *src, size_t nb)
 {
 	char	*start;
 
