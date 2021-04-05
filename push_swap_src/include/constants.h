@@ -27,6 +27,7 @@ typedef struct s_all
 
 bool	strtol_clamp(long *num, const char *str, long min, long max);
 void	exit_err(const char *msg);
+void	sort_l(long *arr, size_t len);
 void	print_stack(const t_all *stacks);
 void	fill_all(t_all *all, int argc, char **argv);
 void	print_arr(const t_all *stacks);
