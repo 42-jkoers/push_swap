@@ -14,7 +14,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-char	*ft_numtobase_u(unsigned long num, char *base)
+char	*ft_numtobase_u(unsigned long num, const char *base)
 {
 	size_t			numlen;
 	unsigned long	base_n;
