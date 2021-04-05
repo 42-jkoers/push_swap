@@ -7,7 +7,7 @@
 # include "libft/include/libft.h"
 # include <stdio.h> // illegal
 
-# define ALLOW_DUPES 1
+# define ALLOW_DUPES 0
 
 typedef struct s_stack
 {
@@ -21,12 +21,14 @@ typedef struct s_all
 	t_stack	b;
 	long	*sorted;
 	size_t	n_elements;
+	bool	print;
+	size_t	operations;
 }		t_all;
 
-bool	is_digitstr(const char *str);
+bool	strtol_clamp(long *num, const char *str, long min, long max);
 void	exit_err(const char *msg);
 void	print_stack(const t_all *stacks);
-void	sort_l(long *arr, size_t len);
+void	fill_all(t_all *all, int argc, char **argv);
 void	print_arr(const t_all *stacks);
 long	biggest(t_llst *lst, size_t len);
 long	smallest(t_llst *lst, size_t len);

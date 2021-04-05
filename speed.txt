@@ -1,0 +1,4 @@
+  3 elements max  	 3 instructions
+  5 elements max    12 instructions
+100 elements max  1500 instructions
+500 elements max 11500 instructions

@@ -102,4 +102,12 @@ void	execute(t_all *all, const char *cmd)
 		reverse_rotate(&all->a);
 		reverse_rotate(&all->b);
 	}
+	else
+		exit_err("Invalid command");
+	all->operations++;
+	if (all->print)
+	{
+		ft_putstr(cmd);
+		ft_putstr("\n");
+	}
 }
