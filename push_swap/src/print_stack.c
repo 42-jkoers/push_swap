@@ -4,27 +4,27 @@
 // {
 // }
 
-void	print_arr(const t_stacks *stacks)
+void	print_arr(const t_all *all)
 {
 	size_t	i;
 
 	i = 0;
 	printf("\nsorted ");
-	while (i < stacks->a_len + stacks->b_len)
+	while (i < all->n_elements)
 	{
-		printf("%li ", stacks->sorted[i]);
+		printf("%li ", all->sorted[i]);
 		i++;
 	}
 	printf("\n");
 }
 
-void	print_stack(const t_stacks *stacks)
+void	print_stack(const t_all *all)
 {
 	t_llst	*current_a;
 	t_llst	*current_b;
 
-	current_a = stacks->a;
-	current_b = stacks->b;
+	current_a = all->a.lst;
+	current_b = all->b.lst;
 	while (current_a || current_b)
 	{
 		if (current_a)

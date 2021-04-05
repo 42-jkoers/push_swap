@@ -9,22 +9,28 @@
 
 # define ALLOW_DUPES 1
 
-typedef struct s_stacks
+typedef struct s_stack
 {
-	t_llst	*a;
-	t_llst	*b;
-	size_t	a_len;
-	size_t	b_len;
+	t_llst	*lst;
+	size_t	len;
+}		t_stack;
+
+typedef struct s_all
+{
+	t_stack	a;
+	t_stack	b;
 	long	*sorted;
-}		t_stacks;
+	size_t	n_elements;
+}		t_all;
 
 bool	is_digitstr(const char *str);
 void	exit_err(const char *msg);
-void	print_stack(const t_stacks *stacks);
+void	print_stack(const t_all *stacks);
 void	sort_l(long *arr, size_t len);
-void	print_arr(const t_stacks *stacks);
+void	print_arr(const t_all *stacks);
 long	biggest(t_llst *lst, size_t len);
 long	smallest(t_llst *lst, size_t len);
-void	sort(t_stacks *stacks);
+void	sort(t_all *stacks);
+void	execute(t_all *all, const char *cmd);
 
 #endif

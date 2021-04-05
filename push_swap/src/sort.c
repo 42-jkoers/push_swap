@@ -1,14 +1,16 @@
 #include "constants.h"
-#include "swap.h"
 
 // small to big
-bool	is_sorted(t_llst *lst)
+bool	is_sorted(const t_llst *lst)
 {
-	while (lst && lst->next)
+	t_llst	*l;
+
+	l = (t_llst *)lst;
+	while (l && l->next)
 	{
-		if (lst->l > lst->next->l)
+		if (l->l > l->next->l)
 			return (false);
-		lst = lst->next;
+		l = l->next;
 	}
 	return (true);
 }
@@ -45,17 +47,17 @@ long	smallest(t_llst *lst, size_t len)
 	return (smallest);
 }
 
-void	sort(t_stacks *stacks)
+void	sort(t_all *all)
 {
 	long	smallest_a;
 
-	while (stacks->a_len > 0)
+	while (all->a.len > 0)
 	{
-		smallest_a = smallest(stacks->a, stacks->a_len);
-		while (stacks->a->l != smallest_a)
-			ra(stacks);
-		pb(stacks);
+		smallest_a = smallest(all->a.lst, all->a.len);
+		while (all->a.lst->l != smallest_a)
+			execute(all, "ra");
+		execute(all, "pb");
 	}
-	while (stacks->b_len > 0)
-		pa(stacks);
+	while (all->b.len > 0)
+		execute(all, "pa");
 }
