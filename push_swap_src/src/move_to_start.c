@@ -57,7 +57,7 @@ bool	move_to_start(t_all *all, long item_max)
 	bottom_i = bottom(all->a.lst, item_max);
 	if (top_i == -1 || bottom_i == -1)
 		return (false);
-	if (top_i < all->a.len)
+	if (top_i < all->a.len / 2)
 		execute_n(all, "ra", top_i);
 	else
 		execute_n(all, "rra", all->a.len - bottom_i);
@@ -92,16 +92,16 @@ void	step_2(t_all *all)
 {
 	ssize_t	biggest_i;
 
-	biggest_i = 0;
+	biggest_i = get_biggest_number_i(all->b.lst);
 	while (biggest_i != -1)
 	{
-		biggest_i = get_biggest_number_i(all->b.lst);
-		if (biggest_i < all->b.len)
+		if (biggest_i < all->b.len / 2)
 			execute_n(all, "rb", biggest_i);
 		else
 			execute_n(all, "rrb", all->b.len - biggest_i);
 
 		execute(all, "pa");
+		biggest_i = get_biggest_number_i(all->b.lst);
 	}
 }
 
