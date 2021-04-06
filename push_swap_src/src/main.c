@@ -37,11 +37,11 @@ static size_t	compute_best_chunksize(const long *arr, size_t len)
 			best_operations = operations;
 			best_chunksize = chunksize;
 		}
-		// printf("chunksize %4lu, operations %20lu, best_chunksize %4lu\n", chunksize, operations, best_chunksize);
 		chunksize++;
 	}
 	return (best_chunksize);
 }
+
 int	main(int argc, char **argv)
 {
 	long	*arr;

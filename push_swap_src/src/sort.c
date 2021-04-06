@@ -37,11 +37,11 @@ void	sort(t_all *all)
 
 	if (is_sorted(all->a.lst))
 		return ;
-	max = 0; // ?
-	while (max < (long)all->n_elements)
+	max = 0;
+	while (max <= (long)all->n_elements)
 	{
-		sort_chunk(all, max);
 		max += all->chunksize;
+		sort_chunk(all, max);
 	}
 	step_2(all);
 }

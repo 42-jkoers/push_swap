@@ -50,7 +50,7 @@ static bool	move_to_start(t_all *all, long item_max)
 	bottom_i = bottom(all->a.lst, item_max);
 	if (top_i == -1 || bottom_i == -1)
 		return (false);
-	if (top_i < all->a.len / 2)
+	if (top_i < all->a.len - bottom_i)
 		execute_n(all, "ra", top_i);
 	else
 		execute_n(all, "rra", all->a.len - bottom_i);
