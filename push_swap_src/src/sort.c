@@ -15,47 +15,33 @@ bool	is_sorted(const t_llst *lst)
 	return (true);
 }
 
-long	biggest(t_llst *lst, size_t len)
+void	step_2(t_all *all)
 {
-	long	biggest;
+	ssize_t	biggest_i;
 
-	if (len == 0)
-		return (0);
-	biggest = lst->l;
-	while (lst)
+	biggest_i = get_biggest_number_i(all->b.lst);
+	while (biggest_i != -1)
 	{
-		if (lst->l > biggest)
-			biggest = lst->l;
-		lst = lst->next;
+		if (biggest_i < all->b.len / 2)
+			execute_n(all, "rb", biggest_i);
+		else
+			execute_n(all, "rrb", all->b.len - biggest_i);
+		execute(all, "pa");
+		biggest_i = get_biggest_number_i(all->b.lst);
 	}
-	return (biggest);
-}
-
-long	smallest(t_llst *lst, size_t len)
-{
-	long	smallest;
-
-	if (len == 0)
-		return (0);
-	smallest = lst->l;
-	while (lst)
-	{
-		if (lst->l < smallest)
-			smallest = lst->l;
-		lst = lst->next;
-	}
-	return (smallest);
 }
 
 void	sort(t_all *all)
 {
 	long	max;
 
-	max = 0;
+	if (is_sorted(all->a.lst))
+		return ;
+	max = 0; // ?
 	while (max < (long)all->n_elements)
 	{
 		sort_chunk(all, max);
-		max += all->chunk_size;
+		max += all->chunksize;
 	}
 	step_2(all);
 }

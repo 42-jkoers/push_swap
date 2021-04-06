@@ -1,15 +1,8 @@
 #include "constants.h"
 #include <limits.h>
 
-// unsigned long	move_to_top_operations(const t_all *all, size_t i)
-// {
-// 	if (i <= all->n_elements / 2)
-// 		return (i);
-// 	return ((all->n_elements - i) - 1);
-// }
-
 // find the first number from the top of the stack that is inside the chunk
-ssize_t	top(
+static ssize_t	top(
 	const t_llst *lst, long max)
 {
 	size_t	i;
@@ -28,7 +21,7 @@ ssize_t	top(
 }
 
 // find the first number from the bottom of the stack that is inside the chunk
-ssize_t	bottom(
+static ssize_t	bottom(
 	const t_llst *lst, long max)
 {
 	size_t	i;
@@ -48,7 +41,7 @@ ssize_t	bottom(
 	return (best);
 }
 
-bool	move_to_start(t_all *all, long item_max)
+static bool	move_to_start(t_all *all, long item_max)
 {
 	ssize_t	top_i;
 	ssize_t	bottom_i;
@@ -86,23 +79,6 @@ ssize_t	get_biggest_number_i(const t_llst *lst)
 		current = current->next;
 	}
 	return (best_i);
-}
-
-void	step_2(t_all *all)
-{
-	ssize_t	biggest_i;
-
-	biggest_i = get_biggest_number_i(all->b.lst);
-	while (biggest_i != -1)
-	{
-		if (biggest_i < all->b.len / 2)
-			execute_n(all, "rb", biggest_i);
-		else
-			execute_n(all, "rrb", all->b.len - biggest_i);
-
-		execute(all, "pa");
-		biggest_i = get_biggest_number_i(all->b.lst);
-	}
 }
 
 void	sort_chunk(t_all *all, long item_max)

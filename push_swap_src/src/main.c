@@ -1,17 +1,61 @@
 #include "constants.h"
 #include "libft/include/libft.h"
 #include <stdlib.h>
+#include <limits.h>
 
-int	main(int argc, char **argv)
+static size_t	count_operations(const long *arr, size_t len, size_t chunksize)
 {
 	t_all	all;
+	size_t	operations;
 
-	fill_all(&all, argc, argv);
-	all.print = true;
+	init_all(&all, arr, len);
+	all.print = false;
+	all.chunksize = chunksize;
 	sort(&all);
-	// print_stack(&all);
-	// print_arr(&all);
-	// printf("operations %li\n", all.operations);
+	operations = all.operations;
+	if (!is_sorted(all.a.lst))
+		operations = ULONG_MAX;
+	destroy_all(&all);
+	return (operations);
+}
+
+static size_t	compute_best_chunksize(const long *arr, size_t len)
+{
+	size_t	chunksize;
+	size_t	best_operations;
+	size_t	best_chunksize;
+	size_t	operations;
+
+	best_operations = SIZE_MAX;
+	best_chunksize = 1;
+	chunksize = 1;
+	while (chunksize < len)
+	{
+		operations = count_operations(arr, len, chunksize);
+		if (operations < best_operations)
+		{
+			best_operations = operations;
+			best_chunksize = chunksize;
+		}
+		// printf("chunksize %4lu, operations %20lu, best_chunksize %4lu\n", chunksize, operations, best_chunksize);
+		chunksize++;
+	}
+	return (best_chunksize);
+}
+int	main(int argc, char **argv)
+{
+	long	*arr;
+	size_t	best_chunksize;
+	t_all	all;
+
+	arr = read_input(argc, argv);
+	best_chunksize = compute_best_chunksize(arr, argc - 1);
+	init_all(&all, arr, argc - 1);
+	all.print = true;
+	all.chunksize = best_chunksize;
+	sort(&all);
+	destroy_all(&all);
+	free(arr);
 	exit(0);
 	return (0);
 }

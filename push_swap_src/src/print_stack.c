@@ -1,23 +1,5 @@
 #include "constants.h"
 
-// void	print_value(const t_llist *current)
-// {
-// }
-
-void	print_arr(const t_all *all)
-{
-	size_t	i;
-
-	i = 0;
-	printf("\nsorted ");
-	while (i < all->n_elements)
-	{
-		printf("%li ", all->sorted[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 void	print_stack(const t_all *all)
 {
 	t_llst	*current_a;
