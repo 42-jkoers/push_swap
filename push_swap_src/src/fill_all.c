@@ -46,6 +46,7 @@ void	fill_sorted(t_all *all, int argc, char **argv)
 {
 	int	i;
 
+	all->sorted = ft_malloc((argc - 1) * sizeof(long));
 	i = 0;
 	while (i < argc - 1)
 	{
@@ -55,11 +56,30 @@ void	fill_sorted(t_all *all, int argc, char **argv)
 	sort_l(all->sorted, argc - 1);
 }
 
+void	map_stack_numbers(t_all *all)
+{
+	t_llst	*current;
+
+	current = all->a.lst;
+	while(current)
+	{
+		current->l = get_index(all->sorted, all->n_elements, current->l);
+		current = current->next;
+	}
+}
+
+size_t	get_chunk_size(const t_all *all)
+{
+	return (all->n_elements / 20);
+}
+
 void	fill_all(t_all *all, int argc, char **argv)
 {
 	fill_stacks(all, argc, argv);
 	fill_sorted(all, argc, argv);
 	all->n_elements = argc - 1;
+	map_stack_numbers(all);
+	all->chunk_size = get_chunk_size(all);
 	all->print = false;
 	all->operations = 0;
 }

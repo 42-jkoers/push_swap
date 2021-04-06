@@ -49,15 +49,13 @@ long	smallest(t_llst *lst, size_t len)
 
 void	sort(t_all *all)
 {
-	long	smallest_a;
+	long	max;
 
-	while (all->a.len > 0)
+	max = 0;
+	while (max < (long)all->n_elements)
 	{
-		smallest_a = smallest(all->a.lst, all->a.len);
-		while (all->a.lst->l != smallest_a)
-			execute(all, "ra");
-		execute(all, "pb");
+		sort_chunk(all, max);
+		max += all->chunk_size;
 	}
-	while (all->b.len > 0)
-		execute(all, "pa");
+	step_2(all);
 }

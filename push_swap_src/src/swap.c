@@ -111,3 +111,12 @@ void	execute(t_all *all, const char *cmd)
 		ft_putstr("\n");
 	}
 }
+
+void	execute_n(t_all *all, const char *cmd, size_t n)
+{
+	while (n > 0)
+	{
+		n--;
+		execute(all, cmd);
+	}
+}

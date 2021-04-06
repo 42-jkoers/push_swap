@@ -4,12 +4,14 @@
 
 int	main(int argc, char **argv)
 {
-	t_all	stacks;
+	t_all	all;
 
-	fill_all(&stacks, argc, argv);
-	sort(&stacks);
-	print_stack(&stacks);
-	print_arr(&stacks);
+	fill_all(&all, argc, argv);
+	all.print = true;
+	sort(&all);
+	// print_stack(&all);
+	// print_arr(&all);
+	// printf("operations %li\n", all.operations);
 	exit(0);
 	return (0);
 }

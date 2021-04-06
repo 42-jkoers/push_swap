@@ -39,6 +39,7 @@ bool	strtol_safe(long *num, const char *str)
 	while (ft_isdigit(str[i]))
 	{
 		num_prev = *num;
+		*num *= 10;
 		*num -= str[i] - '0';
 		if (*num > num_prev)
 			return (false);

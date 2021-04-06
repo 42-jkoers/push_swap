@@ -30,3 +30,17 @@ void	sort_l(long *arr, size_t len)
 		}
 	}
 }
+
+ssize_t	get_index(long *arr, size_t len, long d)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (arr[i] == d)
+			return (i);
+		i++;
+	}
+	return (-1);
+}

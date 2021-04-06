@@ -13,8 +13,8 @@
 NAME      		= push_swap
 
 CC          	= gcc
-CFLAGS      	= -Wall -Wextra -Werror -Wuninitialized -O3
-# CFLAGS			= -Wall -Wextra -Wuninitialized -O0 # debug
+CFLAGS      	= -Wuninitialized -O3
+# CFLAGS      	= -Wall -Wextra -Werror -Wuninitialized -O3
 
 SRCEXT      	= c
 SRCDIR      	= src
