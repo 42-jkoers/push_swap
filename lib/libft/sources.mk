@@ -11,6 +11,7 @@ src/ft_memccpy.c \
 src/ft_lstnew.c \
 src/ft_strset.c \
 src/ft_strndup_unsafe.c \
+src/ft_exit_err.c \
 src/ft_realloc.c \
 src/ft_strtonum_u.c \
 src/ft_lstclear.c \
@@ -23,6 +24,7 @@ src/ft_arr.c \
 src/ft_strnstr.c \
 src/ft_get_next_line2.c \
 src/ft_isprint.c \
+src/ft_strtol.c \
 src/ft_strcat.c \
 src/ft_memset.c \
 src/ft_numtobase.c \

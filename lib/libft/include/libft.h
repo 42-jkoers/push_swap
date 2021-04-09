@@ -167,4 +167,9 @@ ssize_t			ft_buf_read(t_readbuf *buf);
 char			*ft_buf_merge(t_readbuf	*buf);
 void			ft_buf_free(t_readbuf *buf);
 
+bool			ft_strtol_safe(long *num, const char *str);
+bool			ft_strtol_clamp(long *num, const char *str, long min, long max);
+
+void			ft_exit_err(const char *msg);
+
 #endif
