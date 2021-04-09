@@ -1,3 +1,6 @@
 obj/
 .vscode/
 push_swap
+*.o
+*.a
+a.out

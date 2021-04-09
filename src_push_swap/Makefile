@@ -22,55 +22,37 @@ HEADERDIR		= include
 OBJEXT      	= o
 BUILDDIR    	= obj
 
-LIBDIR			= ../lib
-ifeq ($(shell uname),Linux)
-LINKSRC			=
-LINKS			=
-LIBS			= $(LIBDIR)/libft/bin/libft.a
-INCLUDES		= -I$(HEADERDIR) -I$(LIBDIR)
-else
-LINKSRC			=
-LINKS			=
-LIBS			= $(LIBDIR)/libft/bin/libft.a
-INCLUDES		= -I$(HEADERDIR) -I$(LIBDIR)
-endif
+LIBS			= ../lib/libft/bin/libft.a
+INCLUDES		= -I$(HEADERDIR) -I../lib/
 
 HEADERS			= $(shell find $(HEADERDIR) -type f -name '*.h')
 
 include sources.mk
 
 OBJ	= $(foreach src,$(SRC),$(BUILDDIR)/$(notdir $(src:.$(SRCEXT)=.$(OBJEXT))))
-
 VPATH = $(shell find $(SRCDIR) -type d | tr '\n' ':' | sed -E 's/(.*):/\1/')
+SILECE_MAKE = | grep -v -E ".*Leaving directory|.*Entering directory"
 
-all:
-	make -j4 $(NAME)
+all bonus: $(NAME)
 
-bonus:
-	make -j4 $(NAME)
-
-$(NAME): $(BUILDDIR)/ $(OBJ) $(HEADERS) $(LIBS) $(SETTINGS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(BUILDDIR)/*.$(OBJEXT) -o $(NAME) \
-$(LIBS) $(LINKS)
+$(NAME): $(BUILDDIR)/ $(OBJ) $(HEADERS) $(SETTINGS)
+	$(MAKE) -C ../lib/libft/ $(SILECE_MAKE)
+	$(MAKE) -C ../lib/stack/ $(SILECE_MAKE)
+	cp ../lib/stack/obj/*.o $(BUILDDIR)
+	$(CC) $(CFLAGS) $(INCLUDES) $(BUILDDIR)/*.$(OBJEXT) $(LIBS) -o $(NAME)
 
 # sources
 
 $(BUILDDIR)/%.$(OBJEXT): %.$(SRCEXT) $(HEADERS) $(SETTINGS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(BUILDDIR)/$(notdir $@) $(LINKSRC)
 
-# libs
-$(LIBDIR)/libft/bin/libft.a:
-	$(MAKE) -C $(LIBDIR)/libft/
-
 clean:
-	make -C $(LIBDIR)/libft/ clean
 ifneq ($(BUILDDIR),.)
 	/bin/rm -rf $(BUILDDIR)/
 endif
 
 fclean:
 	$(MAKE) clean
-	make -C $(LIBDIR)/libft/ fclean
 	/bin/rm -f $(NAME)
 
 re:
@@ -81,12 +63,11 @@ $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)
 
 findsources:
-	echo "# SRC = find src/ -name \"\*.c\" -exec echo \"\{\} \\\\\" \\\;" \
-> sources.mk
+	echo "# SRC = \$$(shell find $(SRCDIR)/ -type f -name '*.c')" > sources.mk
 	echo "SRC = \\" >> sources.mk
 	find src/ -name "*.c" -exec echo "{} \\" \; >> sources.mk
 
 silent:
-	@$(MAKE) bonus > /dev/null
+	@$(MAKE) > /dev/null
 
 .PHONY: all clean fclean re findsources silent

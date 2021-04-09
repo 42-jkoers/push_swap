@@ -62,7 +62,7 @@ static long	get_index(long *arr, size_t len, long d)
 			return (i);
 		i++;
 	}
-	exit_err("ERR number not in stack");
+	ft_exit_err("ERR number not in stack");
 	return (-1);
 }
 

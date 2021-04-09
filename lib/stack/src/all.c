@@ -1,4 +1,4 @@
-#include "constants.h"
+#include "../include/all.h"
 #include <limits.h>
 
 // push all numbers (preserver order) to stack a
@@ -24,7 +24,6 @@ static void	fill_stacks_ab(t_stack *a, t_stack *b, const long *arr, size_t len)
 void	init_all(t_all *all, const long *arr, size_t len)
 {
 	fill_stacks_ab(&all->a, &all->b, arr, len);
-	map_stack(&all->a);
 	all->n_elements = len;
 	all->chunksize = len / 2;
 	all->print = false;

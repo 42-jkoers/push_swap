@@ -1,5 +1,4 @@
-#include "llst.h"
-#include "constants.h"
+#include "../include/all.h"
 #include <stdlib.h>
 
 t_llst	*llst_new(long l)

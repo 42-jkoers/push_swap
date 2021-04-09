@@ -1,4 +1,5 @@
-#include "constants.h"
+#include "../include/all.h"
+
 // swap the first 2 elements at the top of stack.
 // Do nothing if there is only one or no elements)
 
@@ -103,7 +104,7 @@ void	execute(t_all *all, const char *cmd)
 		reverse_rotate(&all->b);
 	}
 	else
-		exit_err("Invalid command");
+		ft_exit_err("Invalid command");
 	all->operations++;
 	if (all->print)
 	{

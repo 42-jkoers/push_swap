@@ -26,7 +26,7 @@ You can decrease or increase the speed with the matching buttons.
 """
 
 
-RELATIVE_PATH = 'push_swap_src/push_swap'
+RELATIVE_PATH = 'src_push_swap/push_swap'
 
 
 class PsGui:

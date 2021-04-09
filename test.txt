@@ -1,0 +1,19 @@
+make -C lib/libft
+make[1]: Entering directory '/home/joppe/GitHub/push_swap/lib/libft'
+make -j4 bin/libft.a
+make[2]: Entering directory '/home/joppe/GitHub/push_swap/lib/libft'
+make[2]: 'bin/libft.a' is up to date.
+make[2]: Leaving directory '/home/joppe/GitHub/push_swap/lib/libft'
+make[1]: Leaving directory '/home/joppe/GitHub/push_swap/lib/libft'
+make -C src_stack/
+make[1]: Entering directory '/home/joppe/GitHub/push_swap/src_stack'
+make -j4 bin/liball.a
+make[2]: Entering directory '/home/joppe/GitHub/push_swap/src_stack'
+make[2]: 'bin/liball.a' is up to date.
+make[2]: Leaving directory '/home/joppe/GitHub/push_swap/src_stack'
+make[1]: Leaving directory '/home/joppe/GitHub/push_swap/src_stack'
+make -C src_checker/
+make[1]: Entering directory '/home/joppe/GitHub/push_swap/src_checker'
+make[1]: *** No targets specified and no makefile found. Stop.
+make[1]: Leaving directory '/home/joppe/GitHub/push_swap/src_checker'
+make: *** [Makefile:5: all] Error 2

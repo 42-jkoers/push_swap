@@ -15,7 +15,7 @@ bool	is_sorted(const t_llst *lst)
 	return (true);
 }
 
-void	step_2(t_all *all)
+static void	step_2(t_all *all)
 {
 	ssize_t	biggest_i;
 
