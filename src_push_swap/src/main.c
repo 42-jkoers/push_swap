@@ -49,6 +49,8 @@ int	main(int argc, char **argv)
 	t_all	all;
 
 	arr = read_input(argc, argv);
+	if (arr == NULL)
+		ft_exit_err("Invalid input");
 	best_chunksize = compute_best_chunksize(arr, argc - 1);
 	init_all(&all, arr, argc - 1);
 	all.print = true;

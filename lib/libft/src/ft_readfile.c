@@ -30,11 +30,13 @@ char	*ft_readfile(const char *filename)
 		read = ft_buf_read(&buf);
 		if (read < 0)
 		{
+			close(fd);
 			ft_buf_free(&buf);
 			return (NULL);
 		}
 		if (read == 0)
 			break ;
 	}
+	close(fd);
 	return (ft_buf_merge(&buf));
 }

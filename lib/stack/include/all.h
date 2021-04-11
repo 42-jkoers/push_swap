@@ -6,7 +6,7 @@
 # include <stdio.h> // illegal
 # include "../../libft/include/libft.h"
 
-# define ALLOW_DUPES 1
+# define ALLOW_DUPES 0
 
 typedef struct s_llst
 {
@@ -25,7 +25,6 @@ void	llst_iter(t_llst *lst, void (*f)(long));
 size_t	llst_length(t_llst *lst);
 t_llst	*llst_last(t_llst *lst);
 
-
 typedef struct s_stack
 {
 	t_llst	*lst;
@@ -42,10 +41,15 @@ typedef struct s_all
 	size_t	operations;
 }		t_all;
 
+void	swap(t_stack *stack);
+void	push(t_stack *from, t_stack *to);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
+void	execute(t_all *all, const char *cmd);
+void	execute_n(t_all *all, const char *cmd, size_t n);
+
 void	init_all(t_all *all, const long *arr, size_t len);
 void	destroy_all(t_all *all);
 long	*read_input(int argc, char **argv);
-void	execute(t_all *all, const char *cmd);
-void	execute_n(t_all *all, const char *cmd, size_t n);
 
 #endif

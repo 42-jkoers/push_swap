@@ -1,5 +1,6 @@
 #include "../include/all.h"
 #include <limits.h>
+#include <stdlib.h>
 
 static bool	contains_i(const long *arr, size_t len, long l)
 {
@@ -12,29 +13,31 @@ static bool	contains_i(const long *arr, size_t len, long l)
 	return (false);
 }
 
-static long	read_number(const char *s, const long *arr, size_t len)
+static bool	read_number(long *l, const char *s, const long *arr, size_t len)
 {
-	long	l;
-
-	if (!ft_strtol_clamp(&l, s, INT_MIN, INT_MAX))
-		ft_exit_err("Input contains non int value");
-	if (!ALLOW_DUPES && contains_i(arr, len, l))
-		ft_exit_err("Input contains duplicates");
+	if (!ft_strtol_clamp(l, s, INT_MIN, INT_MAX))
+		return (false);
+	if (!ALLOW_DUPES && contains_i(arr, len, *l))
+		return (false);
 	return (l);
 }
 
 long	*read_input(int argc, char **argv)
 {
 	long	*arr;
-	int		i; // todo
+	int		i;
 
 	if (argc <= 1)
-		ft_exit_err("Not enough arguments");
+		return (NULL);
 	arr = ft_malloc((argc - 1) * sizeof(long));
 	i = 0;
 	while (i < argc - 1)
 	{
-		arr[i] = read_number(argv[i + 1], arr, i);
+		if (!read_number(&arr[i], argv[i + 1], arr, i))
+		{
+			free(arr);
+			return (NULL);
+		}
 		i++;
 	}
 	return (arr);
