@@ -51,12 +51,16 @@ int	main(int argc, char **argv)
 	arr = read_input(argc, argv);
 	if (arr == NULL)
 		ft_exit_err("Invalid input");
-	best_chunksize = compute_best_chunksize(arr, argc - 1);
-	init_all(&all, arr, argc - 1);
-	all.print = true;
-	all.chunksize = best_chunksize;
-	sort(&all);
-	destroy_all(&all);
+	if (argc - 1 <= 5)
+		brute_force(arr, argc - 1);
+	else
+	{
+		init_all(&all, arr, argc - 1);
+		all.chunksize = compute_best_chunksize(arr, argc - 1);
+		all.print = true;
+		sort(&all);
+		destroy_all(&all);
+	}
 	free(arr);
 	exit(0);
 	return (0);

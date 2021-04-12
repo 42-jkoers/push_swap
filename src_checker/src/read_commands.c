@@ -5,11 +5,12 @@
 
 static bool	is_valid_command(const char *cmd)
 {
-	static const char *cmds[] = {
+	static const char	*cmds[] = {
 		"sa",
 		"sb",
 		"ss",
 		"pa",
+		"pb",
 		"ra",
 		"rb",
 		"rr",
@@ -18,6 +19,7 @@ static bool	is_valid_command(const char *cmd)
 		"rrr",
 		NULL,
 	};
+
 	return (ft_arrchr((char **)cmds, (char *)cmd) != -1);
 }
 
