@@ -48,9 +48,13 @@ char	**read_commands(void)
 	char	*input;
 	char	**commands;
 	size_t	i;
+	size_t	input_len;
 
 	input = read_input();
 	if (input == NULL)
+		exit_with_error();
+	input_len = ft_strlen(input);
+	if (input_len > 0 && input[input_len - 1] != '\n')
 		exit_with_error();
 	commands = ft_split(input, '\n');
 	free(input);

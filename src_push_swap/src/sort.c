@@ -32,7 +32,7 @@ static void	step_2(t_all *all)
 	}
 }
 
-bool	next_cmd(char **cmd, size_t *offset, const t_all *all)
+bool	next_cmd(char **cmd, size_t *offset)
 {
 	static char	*cmds[] = {
 		"ss",
@@ -49,12 +49,12 @@ bool	next_cmd(char **cmd, size_t *offset, const t_all *all)
 		NULL
 	};
 
-	if (*offset <= 2 && (all->a.len <= 1 || all->b.len <= 1))
-		*offset = 3;
-	if (*offset <= 6 && all->a.len <= 1)
-		*offset = 7;
-	if (*offset >= 7 && all->b.len <= 1)
-		return (false);
+	// if (*offset <= 2 && (all->a.len <= 1 || all->b.len <= 1))
+	// 	*offset = 3;
+	// if (*offset <= 6 && all->a.len <= 1)
+	// 	*offset = 7;
+	// if (*offset >= 7 && all->b.len <= 1)
+	// 	return (false);
 	if (cmds[*offset] == NULL)
 		return (false);
 	*cmd = cmds[*offset];
@@ -62,27 +62,43 @@ bool	next_cmd(char **cmd, size_t *offset, const t_all *all)
 	return (true);
 }
 
-bool	tree(const long *arr, size_t len, char **cmds, size_t depth, size_t *offsets)
+bool	is_sorted_cmd(char **cmds, const long *arr, size_t len)
 {
-	char	*cmd;
 	t_all	all;
+	size_t	i;
+	bool	sorted;
 
 	init_all(&all, arr, len);
-	while (next_cmd(&cmds[depth], &offsets[depth], &all))
+	i = 0;
+	while (i < MAXDEPTH && cmds[i])
 	{
-		execute(&all, cmds[depth]);
-		if (is_sorted(all.a.lst))
+		// printf("%s ", cmds[i]);
+		execute(&all, cmds[i]);
+		i++;
+	}
+	sorted = is_sorted(all.a.lst) && all.b.len == 0;
+	destroy_all(&all);
+	// printf("  %i\n", sorted);
+	return (sorted);
+}
+
+bool	tree(const long *arr, size_t len, char **cmds, size_t depth, size_t *offsets, size_t maxdepth)
+{
+
+	while (next_cmd(&cmds[depth], &offsets[depth]))
+	{
+		if (depth + 1 == maxdepth)
 		{
-			destroy_all(&all);
-			return (true);
-		}
-		if (depth + 1 < MAXDEPTH)
-		{
-			if (tree(arr, len, cmds, depth + 1, offsets))
+			if (is_sorted_cmd(cmds, arr, len))
 				return (true);
 		}
+		else
+		{
+			if (tree(arr, len, cmds, depth + 1, offsets, maxdepth))
+				return (true);
+			offsets[depth + 1] = 0;
+		}
 	}
-	destroy_all(&all);
 	return (false);
 }
 
@@ -90,12 +106,23 @@ void	brute_force(const long *arr, size_t len)
 {
 	size_t	offsets[MAXDEPTH];
 	char	*cmds[MAXDEPTH];
-	size_t	depth;
+	size_t	maxdepth;
 	size_t	i;
 
-	ft_bzero(offsets, sizeof(offsets));
-	ft_bzero(cmds, sizeof(cmds));
-	tree(arr, len, cmds, 0, offsets);
+	maxdepth = 1;
+	cmds[0] = NULL;
+	if (is_sorted_cmd(cmds, arr, len))
+		return ;
+	while (true)
+	{
+		ft_bzero(offsets, sizeof(offsets));
+		ft_bzero(cmds, sizeof(cmds));
+		if (tree(arr, len, cmds, 0, offsets, maxdepth))
+			break ;
+		maxdepth++;
+		if (maxdepth >= MAXDEPTH)
+			ft_exit_err("not found");
+	}
 	i = 0;
 	while (i < MAXDEPTH && cmds[i])
 	{

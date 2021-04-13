@@ -5,8 +5,9 @@
 // "-" | "+"				false
 // " 1"						false
 // "1a"						false
-// "9999999999999999999999"	false
+// "9999999999999999999999"	false (overflow)
 // "1 2"					false
+// "1 "						false
 // "+1" | "-1" 				true
 // "01"		 				true
 
@@ -35,7 +36,7 @@ bool	ft_strtol_safe(long *num, const char *str)
 	}
 	if (str[0] != '-')
 		*num *= -1;
-	return (i > 0);
+	return (i > 0 && str[i] == '\0');
 }
 
 bool	ft_strtol_clamp(long *num, const char *str, long min, long max)

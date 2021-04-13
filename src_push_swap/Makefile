@@ -50,12 +50,18 @@ clean:
 ifneq ($(BUILDDIR),.)
 	/bin/rm -rf $(BUILDDIR)/
 endif
+	$(MAKE) -C ../lib/libft/ clean $(SILECE_MAKE)
+	$(MAKE) -C ../lib/stack/ clean $(SILECE_MAKE)
 
 fclean:
+	$(MAKE) -C ../lib/libft/ fclean $(SILECE_MAKE)
+	$(MAKE) -C ../lib/stack/ fclean $(SILECE_MAKE)
 	$(MAKE) clean
 	/bin/rm -f $(NAME)
 
 re:
+	$(MAKE) -C ../lib/libft/ re $(SILECE_MAKE)
+	$(MAKE) -C ../lib/stack/ re $(SILECE_MAKE)
 	$(MAKE) fclean
 	$(MAKE) all
 

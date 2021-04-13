@@ -49,16 +49,20 @@ $(BINDIR)/$(NAME).a: $(BUILDDIR)/ $(BINDIR)/ $(OBJECTS)
 
 
 clean:
+ifneq ($(BUILDDIR),.)
 	/bin/rm -rf $(BUILDDIR)/
+endif
+	$(MAKE) -C ../libft/ clean $(SILECE_MAKE)
 
 fclean:
-	$(MAKE) clean $(SILECE_MAKE)
-	/bin/rm -f $(TESTNAME)
-	/bin/rm -rf $(BINDIR)/
+	$(MAKE) -C ../libft/ fclean $(SILECE_MAKE)
+	$(MAKE) clean
+	/bin/rm -f $(NAME)
 
 re:
-	$(MAKE) fclean $(SILECE_MAKE)
-	$(MAKE) all $(SILECE_MAKE)
+	$(MAKE) -C ../libft/ re $(SILECE_MAKE)
+	$(MAKE) fclean
+	$(MAKE) all
 
 findsources:
 	echo "# SRC = \$$(shell find $(SRCDIR)/ -type f -name '*.c')" > sources.mk
