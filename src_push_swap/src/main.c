@@ -44,25 +44,24 @@ static size_t	compute_best_chunksize(const long *arr, size_t len)
 
 int	main(int argc, char **argv)
 {
-	long	*arr;
 	size_t	best_chunksize;
 	t_all	all;
-	ssize_t	len;
+	t_larr	arr;
 
-	arr = read_input(&len, argc, argv);
-	if (!arr)
+	arr.arr = read_input(&arr.len, argc, argv);
+	if (!arr.arr)
 		ft_exit_err("Invalid input");
-	if (len <= 5)
-		brute_force(arr, len);
+	if (arr.len <= 5)
+		brute_force(arr);
 	else
 	{
-		init_all(&all, arr, len);
-		all.chunksize = compute_best_chunksize(arr, len);
+		init_all(&all, arr.arr, arr.len);
+		all.chunksize = compute_best_chunksize(arr.arr, arr.len);
 		all.print = true;
 		sort(&all);
 		destroy_all(&all);
 	}
-	free(arr);
+	free(arr.arr);
 	exit(0);
 	return (0);
 }

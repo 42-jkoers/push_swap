@@ -6,7 +6,6 @@
 
 static void	fill_stacks_ab(t_stack *a, t_stack *b, const long *arr, size_t len)
 {
-
 	a->lst = NULL;
 	b->lst = NULL;
 	a->len = len;
@@ -50,6 +49,7 @@ char	*cmd_to_str(t_cmd cmd)
 		"rrb",
 		NULL
 	};
+
 	return (cmds[cmd]);
 }
 

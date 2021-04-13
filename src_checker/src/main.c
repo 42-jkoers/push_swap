@@ -24,7 +24,7 @@ void	init_stack(t_all *all, int argc, char **argv)
 
 void	execute_commands(t_all *all)
 {
-	char	**commands;;
+	char	**commands;
 	size_t	i;
 
 	commands = read_commands();

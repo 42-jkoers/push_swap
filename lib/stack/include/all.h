@@ -3,7 +3,6 @@
 
 # include <stddef.h>
 # include <stdbool.h>
-# include <stdio.h> // illegal
 # include "../../libft/include/libft.h"
 
 # define ALLOW_DUPES 0

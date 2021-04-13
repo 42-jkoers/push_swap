@@ -23,6 +23,11 @@ fclean:
 	rm -f push_swap
 	rm -f checker
 
+findsources:
+	make -C lib/stack/ findsources $(SILECE_MAKE)
+	make -C src_checker/ findsources $(SILECE_MAKE)
+	make -C src_push_swap/ findsources $(SILECE_MAKE)
+
 visualize500: all
 	python3 lib/pyviz.py `ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
 

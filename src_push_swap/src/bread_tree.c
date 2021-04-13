@@ -30,13 +30,13 @@ bool	next_cmd(t_cmd *cmds, size_t depth)
 	return (true);
 }
 
-bool	is_sorted_cmd(t_cmd *cmds, const long *arr, size_t len, size_t depth)
+bool	is_sorted_cmd(t_cmd *cmds, t_larr arr, size_t depth)
 {
 	t_all	all;
 	size_t	i;
 	bool	sorted;
 
-	init_all(&all, arr, len);
+	init_all(&all, arr.arr, arr.len);
 	i = 0;
 	while (i < depth)
 	{
@@ -48,18 +48,18 @@ bool	is_sorted_cmd(t_cmd *cmds, const long *arr, size_t len, size_t depth)
 	return (sorted);
 }
 
-bool	tree(const long *arr, size_t len, t_cmd *cmds, size_t depth, size_t maxdepth)
+bool	tree(t_larr arr, t_cmd *cmds, size_t depth, size_t maxdepth)
 {
 	while (next_cmd(cmds, depth))
 	{
 		if (depth + 1 == maxdepth)
 		{
-			if (is_sorted_cmd(cmds, arr, len, depth))
+			if (is_sorted_cmd(cmds, arr, depth))
 				return (true);
 		}
 		else
 		{
-			if (tree(arr, len, cmds, depth + 1, maxdepth))
+			if (tree(arr, cmds, depth + 1, maxdepth))
 				return (true);
 			cmds[depth + 1] = 0;
 		}
@@ -67,19 +67,19 @@ bool	tree(const long *arr, size_t len, t_cmd *cmds, size_t depth, size_t maxdept
 	return (false);
 }
 
-void	brute_force(const long *arr, size_t len)
+void	brute_force(t_larr arr)
 {
 	t_cmd	cmds[MAXDEPTH];
 	size_t	depth;
 	size_t	i;
 
 	depth = 1;
-	if (is_sorted_cmd(cmds, arr, len, 0))
+	if (is_sorted_cmd(cmds, arr, 0))
 		return ;
 	while (true)
 	{
 		ft_bzero(cmds, sizeof(cmds));
-		if (tree(arr, len, cmds, 0, depth))
+		if (tree(arr, cmds, 0, depth))
 			break ;
 		depth++;
 		if (depth >= MAXDEPTH)

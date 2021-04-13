@@ -61,7 +61,7 @@ $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)
 
 findsources:
-	echo "# SRC = \$$(shell find $(SRCDIR)/ -type f -name '*.c')" > sources.mk
+	echo "# SRC = \$$(shell find $(SRCDIR) -type f -name '*.c')" > sources.mk
 	echo "SRC = \\" >> sources.mk
 	find src/ -name "*.c" -exec echo "{} \\" \; >> sources.mk
 
