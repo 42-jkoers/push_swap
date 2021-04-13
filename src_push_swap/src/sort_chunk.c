@@ -51,9 +51,9 @@ static bool	move_to_start(t_all *all, long item_max)
 	if (top_i == -1 || bottom_i == -1)
 		return (false);
 	if (top_i < all->a.len - bottom_i)
-		execute_n(all, "ra", top_i);
+		execute_n(all, RA, top_i);
 	else
-		execute_n(all, "rra", all->a.len - bottom_i);
+		execute_n(all, RRA, all->a.len - bottom_i);
 	return (true);
 }
 
@@ -85,6 +85,6 @@ void	sort_chunk(t_all *all, long item_max)
 {
 	while (move_to_start(all, item_max))
 	{
-		execute(all, "pb");
+		execute(all, PB);
 	}
 }

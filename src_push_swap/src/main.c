@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	arr = read_input(argc, argv);
 	if (arr == NULL)
 		ft_exit_err("Invalid input");
-	if (argc - 1 <= 5)
+	if (argc - 1 <= 9999)
 		brute_force(arr, argc - 1);
 	else
 	{

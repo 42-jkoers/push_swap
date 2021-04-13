@@ -25,6 +25,24 @@ void	llst_iter(t_llst *lst, void (*f)(long));
 size_t	llst_length(t_llst *lst);
 t_llst	*llst_last(t_llst *lst);
 
+typedef enum e_cmd
+{
+	SS,
+	RR,
+	RRR,
+	RA,
+	SA,
+	PB,
+	RRA,
+	RB,
+	SB,
+	PA,
+	RRB,
+	INVALID,
+}		t_cmd;
+char	*cmd_to_str(t_cmd cmd);
+t_cmd	str_to_cmd(const char *str);
+
 typedef struct s_stack
 {
 	t_llst	*lst;
@@ -45,8 +63,8 @@ void	swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
-void	execute(t_all *all, const char *cmd);
-void	execute_n(t_all *all, const char *cmd, size_t n);
+void	execute(t_all *all, t_cmd cmd);
+void	execute_n(t_all *all, t_cmd cmd, size_t n);
 
 void	init_all(t_all *all, const long *arr, size_t len);
 void	destroy_all(t_all *all);

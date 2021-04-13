@@ -35,3 +35,47 @@ void	destroy_all(t_all *all)
 	llst_clear(&all->a.lst);
 	llst_clear(&all->b.lst);
 }
+
+char	*cmd_to_str(t_cmd cmd)
+{
+	static char	*cmds[] = {
+		"ss",
+		"rr",
+		"rrr",
+		"ra",
+		"sa",
+		"pb",
+		"rra",
+		"rb",
+		"sb",
+		"pa",
+		"rrb",
+		NULL
+	};
+	return (cmds[cmd]);
+}
+
+t_cmd	str_to_cmd(const char *str)
+{
+	static char	*cmds[] = {
+		"ss",
+		"rr",
+		"rrr",
+		"ra",
+		"sa",
+		"pb",
+		"rra",
+		"rb",
+		"sb",
+		"pa",
+		"rrb",
+		NULL
+	};
+	ssize_t		i;
+
+	i = ft_arrchr((char **)cmds, (char *)str);
+	if (i == -1)
+		return (INVALID);
+	else
+		return (i);
+}

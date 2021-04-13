@@ -1,29 +1,10 @@
 #include "checker.h"
 
 #include "libft/include/libft.h"
+#include "stack/include/all.h"
 #include <stdlib.h>
 
-static bool	is_valid_command(const char *cmd)
-{
-	static const char	*cmds[] = {
-		"sa",
-		"sb",
-		"ss",
-		"pa",
-		"pb",
-		"ra",
-		"rb",
-		"rr",
-		"rra",
-		"rrb",
-		"rrr",
-		NULL,
-	};
-
-	return (ft_arrchr((char **)cmds, (char *)cmd) != -1);
-}
-
-static char	*read_input(void)
+static char	*read_input_buf(void)
 {
 	t_readbuf	buf;
 	ssize_t		read;
@@ -50,7 +31,7 @@ char	**read_commands(void)
 	size_t	i;
 	size_t	input_len;
 
-	input = read_input();
+	input = read_input_buf();
 	if (input == NULL)
 		exit_with_error();
 	input_len = ft_strlen(input);
@@ -61,7 +42,7 @@ char	**read_commands(void)
 	i = 0;
 	while (commands[i])
 	{
-		if (!is_valid_command(commands[i]))
+		if (str_to_cmd(commands[i]) == INVALID)
 			exit_with_error();
 		i++;
 	}

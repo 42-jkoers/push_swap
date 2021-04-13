@@ -30,7 +30,7 @@ void	execute_commands(t_all *all)
 	i = 0;
 	while (commands[i])
 	{
-		execute(all, commands[i]);
+		execute(all, str_to_cmd(commands[i]));
 		i++;
 	}
 	ft_free_until_null_char(commands);

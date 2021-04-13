@@ -7,7 +7,6 @@
 # include "stack/include/all.h"
 # include <stdio.h> // illegal
 
-
 typedef struct s_tree
 {
 	long	*arr;
