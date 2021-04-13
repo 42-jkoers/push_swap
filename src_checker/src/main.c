@@ -36,28 +36,13 @@ void	execute_commands(t_all *all)
 	ft_free_until_null_char(commands);
 }
 
-// small to big
-bool	is_sorted(const t_llst *lst)
-{
-	t_llst	*l;
-
-	l = (t_llst *)lst;
-	while (l && l->next)
-	{
-		if (l->l > l->next->l)
-			return (false);
-		l = l->next;
-	}
-	return (true);
-}
-
 int	main(int argc, char **argv)
 {
 	t_all	all;
 
 	init_stack(&all, argc, argv);
 	execute_commands(&all);
-	if (is_sorted(all.a.lst) && all.b.len == 0)
+	if (llst_issorted(all.a.lst) && all.b.len == 0)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");

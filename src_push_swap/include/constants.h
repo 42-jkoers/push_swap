@@ -21,7 +21,6 @@ void	print_stack(const t_all *all);
 ssize_t	get_biggest_number_i(const t_llst *lst);
 void	sort_chunk(t_all *all, long item_max);
 void	sort(t_all *all);
-bool	is_sorted(const t_llst *lst);
 void	brute_force(const long *arr, size_t len);
 
 #endif

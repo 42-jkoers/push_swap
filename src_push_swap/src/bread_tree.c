@@ -30,7 +30,7 @@ bool	next_cmd(t_cmd *cmds, size_t depth)
 	return (true);
 }
 
-bool	is_sorted_cmd(t_cmd *cmds, const long *arr, size_t len)
+bool	is_sorted_cmd(t_cmd *cmds, const long *arr, size_t len, size_t depth)
 {
 	t_all	all;
 	size_t	i;
@@ -38,12 +38,12 @@ bool	is_sorted_cmd(t_cmd *cmds, const long *arr, size_t len)
 
 	init_all(&all, arr, len);
 	i = 0;
-	while (i < MAXDEPTH && cmds[i] != INVALID)
+	while (i < depth)
 	{
 		execute(&all, cmds[i]);
 		i++;
 	}
-	sorted = is_sorted(all.a.lst) && all.b.len == 0;
+	sorted = llst_issorted(all.a.lst) && all.b.len == 0;
 	destroy_all(&all);
 	return (sorted);
 }
@@ -54,7 +54,7 @@ bool	tree(const long *arr, size_t len, t_cmd *cmds, size_t depth, size_t maxdept
 	{
 		if (depth + 1 == maxdepth)
 		{
-			if (is_sorted_cmd(cmds, arr, len))
+			if (is_sorted_cmd(cmds, arr, len, depth))
 				return (true);
 		}
 		else
@@ -70,24 +70,23 @@ bool	tree(const long *arr, size_t len, t_cmd *cmds, size_t depth, size_t maxdept
 void	brute_force(const long *arr, size_t len)
 {
 	t_cmd	cmds[MAXDEPTH];
-	size_t	maxdepth;
+	size_t	depth;
 	size_t	i;
 
-	maxdepth = 1;
-	cmds[0] = 0;
-	if (is_sorted_cmd(cmds, arr, len))
+	depth = 1;
+	if (is_sorted_cmd(cmds, arr, len, 0))
 		return ;
 	while (true)
 	{
 		ft_bzero(cmds, sizeof(cmds));
-		if (tree(arr, len, cmds, 0, maxdepth))
+		if (tree(arr, len, cmds, 0, depth))
 			break ;
-		maxdepth++;
-		if (maxdepth >= MAXDEPTH)
+		depth++;
+		if (depth >= MAXDEPTH)
 			ft_exit_err("not found");
 	}
 	i = 0;
-	while (i < MAXDEPTH && cmds[i])
+	while (i + 1 < depth)
 	{
 		ft_putstr(cmd_to_str(cmds[i]));
 		ft_putstr("\n");

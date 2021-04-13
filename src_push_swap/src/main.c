@@ -13,8 +13,8 @@ static size_t	count_operations(const long *arr, size_t len, size_t chunksize)
 	all.chunksize = chunksize;
 	sort(&all);
 	operations = all.operations;
-	if (!is_sorted(all.a.lst))
-		operations = ULONG_MAX;
+	if (!llst_issorted(all.a.lst) || all.b.len > 0)
+		operations = SIZE_MAX;
 	destroy_all(&all);
 	return (operations);
 }
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	arr = read_input(argc, argv);
 	if (arr == NULL)
 		ft_exit_err("Invalid input");
-	if (argc - 1 <= 9999)
+	if (argc - 1 <= 5)
 		brute_force(arr, argc - 1);
 	else
 	{

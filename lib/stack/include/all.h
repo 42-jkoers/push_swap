@@ -24,6 +24,7 @@ void	llst_delone(t_llst *lst);
 void	llst_iter(t_llst *lst, void (*f)(long));
 size_t	llst_length(t_llst *lst);
 t_llst	*llst_last(t_llst *lst);
+bool	llst_issorted(const t_llst *lst); // small to big
 
 typedef enum e_cmd
 {
