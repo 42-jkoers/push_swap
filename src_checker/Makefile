@@ -38,8 +38,6 @@ SILECE_MAKE = | grep -v -E ".*Leaving directory|.*Entering directory"
 all bonus: $(NAME)
 
 $(NAME): $(BUILDDIR)/ $(OBJ) $(HEADERS) $(SETTINGS)
-	$(MAKE) -C ../lib/libft/ $(SILECE_MAKE)
-	$(MAKE) -C ../lib/stack/ $(SILECE_MAKE)
 	cp ../lib/stack/obj/*.o $(BUILDDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) $(BUILDDIR)/*.$(OBJEXT) $(LIBS) -o $(NAME)
 
@@ -52,18 +50,12 @@ clean:
 ifneq ($(BUILDDIR),.)
 	/bin/rm -rf $(BUILDDIR)/
 endif
-	$(MAKE) -C ../lib/libft/ clean $(SILECE_MAKE)
-	$(MAKE) -C ../lib/stack/ clean $(SILECE_MAKE)
 
 fclean:
-	$(MAKE) -C ../lib/libft/ fclean $(SILECE_MAKE)
-	$(MAKE) -C ../lib/stack/ fclean $(SILECE_MAKE)
 	$(MAKE) clean
 	/bin/rm -f $(NAME)
 
 re:
-	$(MAKE) -C ../lib/libft/ re $(SILECE_MAKE)
-	$(MAKE) -C ../lib/stack/ re $(SILECE_MAKE)
 	$(MAKE) fclean
 	$(MAKE) all
 

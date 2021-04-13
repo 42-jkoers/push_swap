@@ -19,19 +19,47 @@ static bool	read_number(long *l, const char *s, const long *arr, size_t len)
 		return (false);
 	if (!ALLOW_DUPES && contains_i(arr, len, *l))
 		return (false);
-	return (l);
+	return (true);
 }
 
-long	*read_input(int argc, char **argv)
+static long	*split_input(size_t *len, const char *s)
 {
+	char	**split;
+	size_t	i;
 	long	*arr;
-	int		i;
+
+	split = ft_split_length(s, ' ', len);
+	if (!split)
+		return (NULL);
+	arr = ft_malloc(*len * sizeof(long));
+	i = 0;
+	while (i < *len)
+	{
+		if (!read_number(&arr[i], split[i], arr, i))
+		{
+			free(arr);
+			ft_free_until_null_char(split);
+			return (NULL);
+		}
+		i++;
+	}
+	ft_free_until_null_char(split);
+	return (arr);
+}
+
+long	*read_input(size_t *len, int argc, char **argv)
+{
+	size_t	i;
+	long	*arr;
 
 	if (argc <= 1)
 		return (NULL);
-	arr = ft_malloc((argc - 1) * sizeof(long));
+	if (argc == 2)
+		return (split_input(len, argv[1]));
+	*len = argc - 1;
+	arr = ft_malloc(*len * sizeof(long));
 	i = 0;
-	while (i < argc - 1)
+	while (i < *len)
 	{
 		if (!read_number(&arr[i], argv[i + 1], arr, i))
 		{

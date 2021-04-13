@@ -69,6 +69,6 @@ void	execute_n(t_all *all, t_cmd cmd, size_t n);
 
 void	init_all(t_all *all, const long *arr, size_t len);
 void	destroy_all(t_all *all);
-long	*read_input(int argc, char **argv);
+long	*read_input(size_t *len, int argc, char **argv);
 
 #endif

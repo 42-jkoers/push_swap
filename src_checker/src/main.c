@@ -13,11 +13,12 @@ void	exit_with_error(void)
 void	init_stack(t_all *all, int argc, char **argv)
 {
 	long	*arr;
+	size_t	len;
 
-	arr = read_input(argc, argv);
-	if (arr == NULL)
+	arr = read_input(&len, argc, argv);
+	if (!arr)
 		exit_with_error();
-	init_all(all, arr, argc - 1);
+	init_all(all, arr, len);
 	free(arr);
 }
 
@@ -41,7 +42,8 @@ int	main(int argc, char **argv)
 	t_all	all;
 
 	init_stack(&all, argc, argv);
-	execute_commands(&all);
+	if (!llst_issorted(all.a.lst))
+		execute_commands(&all);
 	if (llst_issorted(all.a.lst) && all.b.len == 0)
 		ft_putstr("OK\n");
 	else
