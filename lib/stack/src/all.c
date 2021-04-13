@@ -6,18 +6,16 @@
 
 static void	fill_stacks_ab(t_stack *a, t_stack *b, const long *arr, size_t len)
 {
-	size_t	i;
 
 	a->lst = NULL;
 	b->lst = NULL;
-	i = 0;
-	while (i < len)
-	{
-		llst_push_back(&a->lst, arr[i]);
-		i++;
-	}
 	a->len = len;
 	b->len = 0;
+	while (len)
+	{
+		len--;
+		llst_push_front(&a->lst, arr[len]);
+	}
 }
 
 // initialize *all struct with standard values
