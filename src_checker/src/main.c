@@ -41,9 +41,10 @@ int	main(int argc, char **argv)
 {
 	t_all	all;
 
+	if (argc == 1)
+		return (1);
 	init_stack(&all, argc, argv);
-	if (!llst_issorted(all.a.lst))
-		execute_commands(&all);
+	execute_commands(&all);
 	if (llst_issorted(all.a.lst) && all.b.len == 0)
 		ft_putstr("OK\n");
 	else
