@@ -10,6 +10,7 @@ typedef struct s_larr
 {
 	long	*arr;
 	size_t	len;
+	bool	test;
 }		t_larr;
 
 void	map_stack(t_stack *stack);

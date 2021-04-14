@@ -3,6 +3,7 @@
 #include "libft/include/libft.h"
 #include "stack/include/all.h"
 #include <stdlib.h>
+#include <stddef.h>
 
 static char	*read_input_buf(void)
 {

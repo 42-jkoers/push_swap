@@ -3,6 +3,7 @@
 #include "libft/include/libft.h"
 #include "stack/include/all.h"
 #include <stdlib.h>
+#include <stddef.h>
 
 void	exit_with_error(void)
 {

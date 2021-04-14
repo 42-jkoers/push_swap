@@ -1,5 +1,4 @@
 #include "../include/all.h"
-#include <limits.h>
 
 // push all numbers (preserver order) to stack a
 // make stack b empty
